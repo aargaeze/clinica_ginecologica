@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Médica Especializada</title>
+    <style>
+        /* ... (Tu CSS permanece igual) ... */
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://raw.githubusercontent.com/tu-usuario/tu-repo/main/logo.png" alt="Logo de la Clínica">
+    </header>
+    <div class="hero">
+        <h1>Bienvenido a nuestra Clínica</h1>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Agendar Cita</h2>
+            <form id="appointment-form" method="POST" action="https://script.google.com/macros/s/AKfycbx7S38KN08Ue4_UALhPs9z2nrbCEKClmikjU5SSQ8zau9A1ul7ZEu0C5FiqMV9c4oe63w/exec">
+                <input type="text" name="name" placeholder="Nombre completo" required>
+                <input type="tel" name="phone" placeholder="Teléfono" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <select name="gender" required>
+                    <option value="">Sexo</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <select name="specialty" required>
+                    <option value="">Especialidad</option>
+                    <option value="Ginecología">Ginecología</option>
+                    <option value="Obstetricia">Obstetricia</option>
+                    <option value="Pediatría">Pediatría</option>
+                    <option value="Medicina General">Medicina General</option>
+                </select>
+                <input type="date" name="date" required>
+                <input type="time" name="time" required>
+                <textarea name="comments" placeholder="Comentarios adicionales"></textarea>
+                <button type="submit">Agendar Cita</button>
+                <div class="success-message" id="success-message">
+                    Gracias, tu cita ha sido agendada.<br>
+                    ⏳ Redirigiendo al inicio...<br>
+                     Te contactaremos pronto.
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // No es necesario enviar los datos manualmente con fetch, la URL del formulario se encarga de eso.
+
+            document.getElementById('success-message').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('success-message').style.display = 'none';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('appointment-form').reset();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
